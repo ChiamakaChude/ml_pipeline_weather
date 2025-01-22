@@ -1,5 +1,4 @@
 weather_ml/config/config.py
-weather_ml/logs/
 .env
 __pycache__/
 *.pyc
