@@ -1,5 +1,5 @@
-weather_ml/config/config.py
-weather_ml/models/traffic_speed_model_lstm.h5
+weather_ml/config/
+weather_ml/models/
 weather_ml/logs
 .env
 __pycache__/
