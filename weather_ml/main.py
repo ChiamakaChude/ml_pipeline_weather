@@ -18,7 +18,7 @@ from scripts.preprocess_data import clean_data
 from scripts.preprocess_data import prepare_data
 from scripts.model import modelling
 
-
+#test code
 if __name__=="__main__":
     connection = connect_db(server, database, driver)
     data = extract_data(connection)
