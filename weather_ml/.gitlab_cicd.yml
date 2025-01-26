@@ -1,0 +1,47 @@
+name: CI/CD Pipeline for ML Model
+
+on:
+  workflow_dispatch:  # Allow manual trigger via the BashOperator
+
+jobs:
+  ml_pipeline:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+    
+    steps:
+      #Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      #Set up Python
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt  # Install all necessary Python packages (e.g., scikit-learn, pandas, tensorflow)
+
+      # Run tests
+      - name: Run Unit Tests
+        run: |
+          python -m unittest discover tests/  # Assuming you have unit tests in the 'tests' directory
+
+      #Train the model
+      - name: Train ML Model
+        run: |
+          python train_model.py  # Train your ML model using your script, e.g., 'train_model.py'
+      
+      #Save the trained model
+      - name: Save Trained Model
+        run: |
+          python save_model.py  # Save the trained model (e.g., using 'joblib', 'pickle', or 'keras')
+
+      - name: Commit Trained Model
+        run: |
+          git config --global user.name "Your Name"
+          git config --global user.email "your_email@example.com"
+          git add weather_ml/models/traffic_speed_model.h5  # or your model filename
+          git commit -m "Add trained ML model"
+          git push

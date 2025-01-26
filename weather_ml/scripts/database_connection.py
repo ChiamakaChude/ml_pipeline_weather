@@ -1,7 +1,7 @@
 import pyodbc
 import pandas as pd
 
-from config.config import username, password
+from config.config import username, password, server, database, driver
 
 def connect_db(server, database, driver):
     

@@ -7,7 +7,7 @@ from tensorflow.keras.layers import LSTM, Dense, Dropout
 
 from config.config import model_path
 
-def modelling(data):
+def modelling(data, save_model):
     
     # Prepare the target and features
     X = data.drop(['traffic_speed'], axis=1).values
@@ -41,8 +41,9 @@ def modelling(data):
     loss = model.evaluate(X_test, y_test)
     print(f'Test Loss: {loss}')
     
-    model.save(model_path)
-    print("Model saved as 'traffic_speed_model.h5'")
+    if save_model:
+        model.save(model_path)
+        print("Model saved as 'traffic_speed_model.h5'")
 
     # Optionally, return the model and history for further analysis
     return model, history

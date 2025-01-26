@@ -4,3 +4,4 @@ weather_ml/logs
 .env
 __pycache__/
 *.pyc
+*__init__.py
